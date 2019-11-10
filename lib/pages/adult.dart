@@ -10,9 +10,10 @@ class AdultPage extends StatefulWidget {
 
 class _AdultPageState extends State<AdultPage> {
   Result result = new Result();
-  BMI bmi = new BMI('', '', '', '', '', '');
+  BMI bmi = new BMI(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
   final _formkey = GlobalKey<FormState>();
+
   final _formkey2 = GlobalKey<FormState>();
   double sliderdefaultvalueHeight = 0.0;
   bool swapheight = false;
@@ -65,7 +66,15 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'cm:'),
                             onSaved: (cm) {
-                              bmi.set_cm = cm;
+                              bmi.set_cm =
+                                  cm.isEmpty ? bmi.cm : double.parse(cm);
+                            },
+                            validator: (cm) {
+                              if (cm.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           )),
                           SizedBox(width: 15.0),
@@ -83,7 +92,15 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'Feet:'),
                             onSaved: (feet) {
-                              bmi.set_feet = feet;
+                              bmi.set_feet =
+                                  feet.isEmpty ? bmi.feet : double.parse(feet);
+                            },
+                            validator: (feet) {
+                              if (feet.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           )),
                           SizedBox(width: 15.0),
@@ -91,7 +108,16 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'Inche:'),
                             onSaved: (inche) {
-                              bmi.set_inche = inche;
+                              bmi.set_inche = inche.isEmpty
+                                  ? bmi.inche
+                                  : double.parse(inche);
+                            },
+                            validator: (inche) {
+                              if (inche.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           ))
                         ],
@@ -146,7 +172,15 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'Kg:'),
                             onSaved: (kg) {
-                              bmi.set_kg = kg;
+                              bmi.set_kg =
+                                  kg.isEmpty ? bmi.kg : double.parse(kg);
+                            },
+                            validator: (kg) {
+                              if (kg.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           )),
                         ],
@@ -163,7 +197,16 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'Stone:'),
                             onSaved: (stone) {
-                              bmi.set_stone = stone;
+                              bmi.set_stone = stone.isEmpty
+                                  ? bmi.stone
+                                  : double.parse(stone);
+                            },
+                            validator: (stone) {
+                              if (stone.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           )),
                           SizedBox(width: 15.0),
@@ -171,7 +214,16 @@ class _AdultPageState extends State<AdultPage> {
                               child: TextFormField(
                             decoration: InputDecoration(labelText: 'Pounds:'),
                             onSaved: (pounds) {
-                              bmi.set_pounds = pounds;
+                              bmi.set_pounds = pounds.isEmpty
+                                  ? bmi.pounds
+                                  : double.parse(pounds);
+                            },
+                            validator: (pounds) {
+                              if (pounds.isEmpty) {
+                                return 'field required';
+                              } else {
+                                return null;
+                              }
                             },
                           ))
                         ],
@@ -189,11 +241,17 @@ class _AdultPageState extends State<AdultPage> {
           SizedBox(
             width: double.infinity,
             child: RaisedButton(
-              onPressed: () {
-                _formkey.currentState.save();
-                _formkey2.currentState.save();
-                BMI(bmi.inche, bmi.feet, bmi.cm, bmi.kg, bmi.pounds, bmi.stone);
-                result.displayresults(context, bmi);
+              onPressed : () {
+               bool form1 = _formkey.currentState.validate();
+               bool form2 = _formkey2.currentState.validate();
+               if(form1 && form2 ==true){
+                 _formkey.currentState.save();
+                  _formkey2.currentState.save();
+                  BMI(bmi.inche, bmi.feet, bmi.cm, bmi.kg, bmi.pounds,
+                      bmi.stone);
+                  result.displayresults(context, bmi);
+               }
+
               },
               color: Colors.blue,
               shape: RoundedRectangleBorder(
@@ -203,7 +261,7 @@ class _AdultPageState extends State<AdultPage> {
               child: Text(
                 "Calculate",
                 style: TextStyle(
-                    fontSize: 25.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.normal,
                     color: Colors.white),
               ),

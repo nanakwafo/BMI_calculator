@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   conditional_builder: ^1.0.2
   splashscreen: ^1.2.0
+  syncfusion_flutter_gauges: ^1.0.0-beta
 
 dev_dependencies:
   flutter_test:

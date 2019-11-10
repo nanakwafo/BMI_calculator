@@ -9,7 +9,7 @@ class ChildPage extends StatefulWidget {
 
 class _ChildPageState extends State<ChildPage> {
   Result result = new Result();
-  BMI bmi = new BMI('', '', '', '', '', '');
+  BMI bmi = new BMI(0.0,0.0,0.0,0.0,0.0,0.0);
 
   final _formkey = GlobalKey<FormState>();
   final _formkey2 = GlobalKey<FormState>();
@@ -63,7 +63,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'cm:'),
                                 onSaved: (cm) {
-                                  bmi.set_cm = cm;
+                                  bmi.set_cm = double.parse(cm);
                                 },
                               )),
                           SizedBox(width: 15.0),
@@ -81,7 +81,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'Feet:'),
                                 onSaved: (feet) {
-                                  bmi.set_feet = feet;
+                                  bmi.set_feet = double.parse(feet);
                                 },
                               )),
                           SizedBox(width: 15.0),
@@ -89,7 +89,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'Inche:'),
                                 onSaved: (inche) {
-                                  bmi.set_inche = inche;
+                                  bmi.set_inche = double.parse(inche);
                                 },
                               ))
                         ],
@@ -144,7 +144,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'Kg:'),
                                 onSaved: (kg) {
-                                  bmi.set_kg = kg;
+                                  bmi.set_kg = double.parse(kg);
                                 },
                               )),
                         ],
@@ -161,7 +161,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'Stone:'),
                                 onSaved: (stone) {
-                                  bmi.set_stone = stone;
+                                  bmi.set_stone = double.parse(stone);
                                 },
                               )),
                           SizedBox(width: 15.0),
@@ -169,7 +169,7 @@ class _ChildPageState extends State<ChildPage> {
                               child: TextFormField(
                                 decoration: InputDecoration(labelText: 'Pounds:'),
                                 onSaved: (pounds) {
-                                  bmi.set_pounds = pounds;
+                                  bmi.set_pounds = double.parse(pounds);
                                 },
                               ))
                         ],
